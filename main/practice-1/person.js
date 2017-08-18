@@ -3,11 +3,8 @@ class Person {
         this.name = name;
         this.age = age;
     }
-    basicIntroduce() {
-        return 'My name is '+this.name+'. I am '+this.age+' years old.';
-    }
     introduce() {
-        return this.basicIntroduce();
+        return 'My name is '+this.name+'. I am '+this.age+' years old.';
     }
 }
 

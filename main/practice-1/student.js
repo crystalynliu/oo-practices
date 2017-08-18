@@ -6,7 +6,7 @@ class Student extends Person {
         this.clazz = clazz;
     }
     introduce(){
-        return super.basicIntroduce()+' I am a Student. I am at Class '+this.clazz+'.';
+        return super.introduce()+' I am a Student. I am at Class '+this.clazz+'.';
     }
 }
 
