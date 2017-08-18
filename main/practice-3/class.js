@@ -2,14 +2,16 @@
 function Class(number) {
   this.number = number;
   this.isClassStudent = false;
+  this.teachers = [];
 }
 
 Class.prototype.assignLeader = function(student) {
   if(this.isClassStudent){
-    if(this.teacher) {
-      this.teacher.notifyLeaderAssigned(student.name + ' become Leader of Class ' + this.number);
-    }
-    changeStudentIntroduce(student, 'I am Leader of Class ' + this.number +'.');
+    var classNumber = this.number;
+    this.teachers.forEach(function(teacher){
+      teacher.notifyLeaderAssigned(student.name + ' become Leader of Class ' + classNumber);
+    })
+    changeStudentIntroduce(student, 'I am Leader of Class ' + classNumber +'.');
     return 'Assign team leader successfully.';
   }
   return 'It is not one of us.';
@@ -17,9 +19,10 @@ Class.prototype.assignLeader = function(student) {
 
 Class.prototype.appendMember = function(student) {
   this.isClassStudent = true;
-  if(this.teacher) {
-    this.teacher.notifyStudentAppended(student.name + ' has joined Class ' + this.number);    
-  }
+  var classNumber = this.number;
+  this.teachers.forEach(function(teacher){
+    teacher.notifyStudentAppended(student.name + ' has joined Class ' + classNumber);    
+  })
   changeStudentIntroduce(student, 'I am at Class ' + this.number +'.');
 }
 
@@ -28,7 +31,7 @@ Class.prototype.hasStudent = function(student) {
 }
 
 Class.prototype.setTeacher = function(teacher) {
-  this.teacher = teacher;
+  this.teachers.push(teacher);
 }
 
 function changeStudentIntroduce(student, message) {
